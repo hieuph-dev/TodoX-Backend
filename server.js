@@ -2,6 +2,7 @@ import express, { response } from 'express'
 import taskRoutes from './src/routes/taskRoutes.js'
 import { connectDB } from './src/config/db.js'
 import dotenv from 'dotenv'
+import cors from 'cors'
 
 // Load from .env
 dotenv.config()
@@ -14,6 +15,7 @@ const app = express()
 
 // Middleware
 app.use(express.json())
+app.use(cors({ origin: 'http://localhost:5173' }))
 
 // Init routes
 app.use('/api/tasks/', taskRoutes)
